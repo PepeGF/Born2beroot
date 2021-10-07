@@ -1,0 +1,8 @@
+https://github.com/yeta1990/born2beroot-guide/blob/main/correction.md
+correction.md
+Sources:  
+https://1gbits.com/blog/debian-vs-centos/  
+https://serverfault.com/questions/396079/differences-between-debian-and-centos-from-a-web-server-prospective  
+https://www.educba.com/centos-vs-debian/  
+https://en.wikipedia.org/wiki/AppArmor  
+https://wiki.ubuntu.com/Lvm
