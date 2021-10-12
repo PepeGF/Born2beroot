@@ -3,51 +3,42 @@ archi=$(uname -a)
 num_cpu=$(nproc --all)
 virtual_cpu=$(cat /proc/cpuinfo | grep processor | wc -l)
 
-total_mem=$(free -m | awk '{print $2}' | awk '(NR==2)')
-used_mem=$(free -m | awk '{print $3}' | awk '(NR==2)')
+total_mem=$(free -m | grep Mem | awk '{print $2}')
+used_mem=$(free -m | grep Mem | awk '{print $3}')
 #percent_mem=$[${used_mem} * 100 / ${total_mem}]
-percent_mem=$(free -m | awk '(NR==2){printf "%.2f\n", $3*100/$2}')
+percent_mem=$(free -m | grep Mem | awk '{printf "%.2f\n", $3*100/$2}')
 
-total_disk=$[$(df -h | awk '(NR==4) {print $2-"G"}') + $(df -h | awk '(NR==8) {print $2-"G"}')]
-used_disk=$[$(df -m | awk '(NR==4) {print $4}') + $(df -m | awk '(NR==8) {print $4}')]
-percent_disk=$[$(df -m | awk '(NR==4) {print $5-"%"}') + $(df -m | awk '(NR==8) {print $5-"%"}')]
+total_disk_mb=$(df -m | grep /dev/mapper | awk '{temp += $2} END {print temp}')
+total_disk=$(printf   $[$total_disk_mb/1024])
+used_disk=$(df -m | grep /dev/mapper | awk '{temp2 += $4} END {print temp2}')
+percent_disk=$(df -m | grep /dev/mapper/ | awk '{temp3 += $5} END {print temp3-"%"}')
 
-wololo=2.7 + 3.4
-echo "-----------"
-echo $wololo
-echo "----------"
+cpu_load=$(top -bn1 | sed '1,7d' | awk '{temp4 += $9} END {printf "%.1f\n", temp4}')
 
-echo "          "
+last_boot=$(who -b | awk '{printf $3" "$4}')
+
+lvm_active=$(lvm pvdisplay | grep Allocatable | awk '{print $2}')
+
+conections_number=$(ss -s | awk '(NR==2) {print $4-","}')
+
+user_log=$(who | awk '{print $1}' | uniq | wc -l)
+
+ip_add=$(hostname -I)
+mac_add=$(ip a | grep ether | awk '{print $2}')
+
+sudo_commands=$(cat /var/log/sudo/sudo_logs | grep COMMAND | wc -l)
+
+#------------------------------------------------------------------------------#
 
 echo	"#Architecture: " $archi
-echo	"CPU physical :" $num_cpu
-echo	"vCPU :" $virtual_cpu
-echo	"Memory Usage: " $used_mem"/"$total_mem"MB ("$percent_mem"%)"
-echo	"Disk Usage: " $used_disk"/"$total_disk"Gb ("$percent_disk"%)"
-echo	"CPU load: "
-echo	"Last boot: "
-echo	"LVM use: "
-echo	"Connexions TCP : "
-echo	"User log: "
-echo	"Network: "
-echo	"Sudo :"
-
-echo	"------__---"
-
-
-#grep MemAvailable/proc/meminfo
-
-
-
-#echo $used_mem
-#echo $total_mem
-#used_mem=$(grep "\<Cached\>" /proc/meminfo | awk '{print $2}')
-#total_mem=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-
-#cron parece que para ejecutar preriodicamente
-#positional parameters
-#expr para hacer operaciones
-# https://linuxconfig.org/bash-scripting-tutorial-for-beginners
-# echo 'scale=3;1/3' | bc
-# variable = $( echo 'scale=3;1/3' | bc)
-# echo $(variable)
+echo	"#CPU physical :" $num_cpu
+echo	"#vCPU :" $virtual_cpu
+echo	"#Memory Usage: "$used_mem"/"$total_mem"MB ("$percent_mem"%)"
+echo	"#Disk Usage: "$used_disk"/"$total_disk"Gb ("$percent_disk"%)"
+echo	"#CPU load: "$cpu_load"%"
+echo	"#Last boot: "$last_boot
+echo	"#LVM use: "$lvm_active
+echo	"#Connexions TCP : "$conections_number ESTABLISHED
+echo	"#User log: "$user_log
+echo	"#Network: IP "$ip_add"("$mac_add")"
+echo	"#Sudo : "$sudo_commands "cmd"
