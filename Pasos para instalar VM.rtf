@@ -1,0 +1,81 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww12100\viewh22040\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Pasos que he seguido para instalar Debian en la VM:\
+\
+0) instalar, si es que no est\'e1 instalado, el programa virtualbox.\
+0.1) Descargar la iso de Debian. (Poner en google descargar Debian y se encuentra inmediatamamente)\
+\
+1) En VirtualBox -> new\
+1.1) Name: lo que quieras (yo he puesto Debian_VM)\
+1.2) Machine Folder: Other, home_login, subir en Mac OS / sgoinfre/students crear carpeta con tu login, queda algo tipo /Volumes/sgoinfre/students/login. Type: Linux. Version Debian (64-bits). Continue.\
+1.3) RAM allocated -> yo he puesto 5Gb (5000Mb)\
+1.4) Create a virtual hard disk now / VDI / Dynamically allocated / 8Gb\
+\
+Ya est\'e1 creada la m\'e1quina virtual, ahora vamos a instalar el sistema operativo:\
+2) En ventana inicial de VirtualBox\
+2.1) Settings / Display -> Scale factor 300% y Video Memory -> 75Mb (esto no estoy seguro)\
+2.2) Settings / Storage -> Optical Drive -> seleccionar la iso de Debian descargada en paso 0)\
+2.3) OK\
+\
+3) Start -> Install (NO graphical)\
+3.1) Englis / Europe / Spain / English USA UTF 8 / Spain ( no especialmente importante)\
+3.2) hostname -> login // Domain -> empty // root password -> la que quieras  y repetir // Full name new user -> Tu Nombre (Da igual c\'f3mo lo pongas) // Username -> login // Contrase\'f1a y repetir // Time zone Pen\'ednsula (o Madrid)\
+\
+4) Preparando las peticiones.\
+4.1) Partitioning method: Guided - use entire disk and set up ENCRYPTED LVM\
+4.2) Disco q pone\
+4.3) separate /home partition\
+4.4) Yes\
+4.5) Espera // Espera // Espera // como dir\'eda Dori: Sigue esperando\'85\
+4.5.1) Contrase\'f1a de encriptacion x2.\
+4.6) Deja el tama\'f1o m\'e1ximo y continua.\
+4.7) Finish partitioning and write changes to disk\
+4.8) Despu\'e9s de esperar, no Scan estar installation media.\
+4.9) Debian archive mirror country -> Spain // Debian archive mirror deb.debian.org\
+4.10) Proxy -> dejar vac\'edo\
+4.11) Survey > No\
+4.12) Desseleccionar lo que est\'e9 seleccionado.\
+4.13) Intall GRUB -> Yes\
+4.14) /dev/sda\
+4.15) Installation complete -> OLE!\
+\
+Cambiar de usuario: comando su\
+Cambiar a sudo: su -\
+Cambiar a usuario: su usuario\
+\
+Conexi\'f3n SSH:\
+https://linoxide.com/how-to-enable-ssh-on-debian/\
+https://www.youtube.com/watch?v=hKfqg-w0oFQ\
+Configurar SSH\
+https://www.youtube.com/watch?v=Tn2MjqiACac\
+Desactivar acceso Root (0:35 hasta 3:20), despu\'e9s de 3:20 no se si lo quiero.\
+\
+Conectarse desde el Mac al debian:\
+Ssh josgarci@localhost -p 4242 (despu\'e9s de configurar el puerto 4242 ver en v\'eddeo previo)\
+\
+A\'f1adir usuario a grupo sudo:\
+Adduser username sudo\
+https://www.tecmint.com/fix-user-is-not-in-the-sudoers-file-the-incident-will-be-reported-ubuntu/\
+\
+Modificar hostname:\
+https://www.cyberciti.biz/faq/how-to-change-hostname-on-debian-10-linux/ (este mejor)exit\
+\
+https://www.ochobitshacenunbyte.com/2014/04/01/cambiar-nombre-de-maquina-host-en-gnulinux/\
+\
+Instalar UFW:\
+Sudo apt install ufw\
+Conexi\'f3n solo por puerto 4242 y activar el firewall:\
+https://www.digitalocean.com/community/tutorials/como-configurar-un-firewall-con-ufw-en-debian-9-es\
+\
+Configurar contrase\'f1as:\
+https://ostechnix.com/how-to-set-password-policies-in-linux/\
+\
+Configurar SUDO\
+\
+Script bash:\
+}
