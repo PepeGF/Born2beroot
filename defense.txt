@@ -1,0 +1,68 @@
+++aptitude vs apt:
+--Ambos son gestores de paquetes.
+apt no tiene interfaz gráfica, solo línea de comandos.
+aptitude tiene insterfaz gráfica, pero puede funcionar tb con línea de comandos.
+apt nivel bajo, aptitude nivel alto.
+aptitude tiene una mejor gestión de paquetes que apt
+aptitude borra paquetes no útiles al desinstalar, apt no hace eso.
+aptitude tiene comando why, que muestra dependencias de paquetes entre otras.
+
+++How VW works:
+--un software capaz de cargar en su interior otro sistema operativo haciéndole creer que es un PC de verdad
+getiona los recursos de hardware disponibles en el equipo anfritión asignados a la VM, pero de una forma independiente al SO sobre el que está cargada.
+
+++ Debian vs CentOS
+-- Debian sin interfaz gráfica consume menos recursos que CentOS sin interfaz gráfica.
+Debian es más fácil de mantener que CentOS
+Menor consumo de disco duro al no instalar paquete no utilizados
+Más documentación (debatible)
+Gestor de paquetes mejor de Debian.
+Debian no tiene "entrerprise", Centos sí, podría ser mejor para una empresa.
+Centos tiene una instalación más pesada.
+SON MUY PARECIDOS, las diferencias son en detalles.
+
+++Propósito de VM:
+--Se utilizan para hacer pruebas de software en diferentes sistemas operativos, o para hacer pruebas de algo potencialmente peligroso para el SO anfitrión bajo un entorno controlado y delimitado.
+
+++APParmor
+--es un módulo de seguridad del kernel Linux que permite al administrador del sistema restringir las capacidades de un programa. Para definir las restricciones asocia a cada programa un perfil de seguridad. Este perfil puede ser creado manual o automáticamente
+
+++Crear nuevo usuario:
+sudo adduser username
+sudo chage -l username
+sudo adduser username sudo
+sudo adduser sudo systemsetup -getremoteloginsudo systemsetup -getremoteloginsudo systemsetup -getremoteloginsudo systemsetup -getremoteloginusername user42
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
